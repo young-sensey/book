@@ -1,0 +1,6 @@
+Docker/
+docker-compose.yml
+docker-readme.txt
+.env
+.idea/
+html
