@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\Book;
+namespace lib\MyLib;
 
 //класс приложения
 class App
@@ -15,10 +15,23 @@ class App
     {
         $conn = mysqli_connect(self::HOST, self::USER, self::PASS, self::DB);
         $request = Request::getInstance();
-        $request->setParam('x', 10);
-        $request->setParam('y', 15);
+        $request->setParam('conn', $conn);
 
-        $response = Response::getInstance();
+        session_start();
+        if (!isset($_SESSION["page_active"])) {
+            $_SESSION["page_active"] = 1;
+        }
+        if ($request->getParam('page')) {
+            $_SESSION["page_active"] = $request->getParam('page');
+        }
+
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $request->setParam('ajax_request', true);
+        } else {
+            $request->setParam('ajax_request', false);
+        }
+
+//        $response = Response::getInstance();
     }
 
     // запуск приложения, создание  объекта FrontController-а, запуск процесса диспетчеризаци, вывод результата объекта Response
@@ -35,5 +48,6 @@ class App
 
         $front = new FrontController();
         $front->dispatch($request, $response);
+        $response->send();
     }
 }

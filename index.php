@@ -1,8 +1,8 @@
 <?php
 
-include_once 'lib/Book/includes/autoload.php';
+include_once 'lib/MyLib/includes/autoload.php';
 
-use lib\Book\App;
+use lib\MyLib\App;
 
 $app = new App();
 $app->init();

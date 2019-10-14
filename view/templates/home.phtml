@@ -1,0 +1,86 @@
+<?php
+    use lib\MyLib\View;
+?>
+
+<?php echo View::renderTemplate("header"); ?>
+
+<h1>Book</h1>
+<div id="bookTable">
+<?php echo View::renderTemplate("bookTable", ['list' => $list]); ?>
+
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th>text</th>-->
+<!--        <th>user name</th>-->
+<!--    </tr>-->
+<!--    --><?php //foreach ($list as $item): ?>
+<!--        <tr>-->
+<!--            <td>--><?php //echo $item['text']; ?><!--</td>-->
+<!--            <td>--><?php //echo $item['author']; ?><!--</td>-->
+<!--        </tr>-->
+<!--    --><?php //endforeach; ?>
+<!--</table>-->
+</div>
+<div id="pages-block">
+    <?php for ($page = 1; $page <= $count_pages; $page++) : ?>
+        <button class = "page <?php if ($page == $page_active) :?>active<?php endif; ?>"
+                data-page = <?php echo $page; ?>><?php echo $page; ?></button>
+    <?php endfor; ?>
+</div>
+<a href='/Book/add'>Add record</a>
+
+<?php echo View::renderTemplate("footer"); ?>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    th {
+        background: #AFCDE7;
+        padding: 10px 20px;
+    }
+    th, td {
+        border-style: solid;
+        border-width: 0 1px 1px 0;
+        border-color: white;
+    }
+    td {
+        background: #D8E6F3;
+        padding: 5px 20px;
+    }
+    th:first-child, td:first-child {
+        text-align: left;
+    }
+    th.user {
+        width: 12%;
+    }
+    .page.active {
+        background: #AFCDE7;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+        console.log('test1');
+        $("#pages-block .page").click(function() {
+            var page = $(this).data('page');
+            var this_page = $(this);
+            var page_active = $(".page.active").data('page');
+            var data = "page="+ page;
+            $.ajax({
+                url: "/Book/getlist",
+                type: "GET",
+                data : data,
+                success: function(html){
+                    // alert(data);
+                    $('#bookTable').empty();
+                    $('#bookTable').append(html);
+                    $('.page').removeClass('active');
+                    this_page.addClass('active');
+                }
+            });
+        });
+    })
+</script>

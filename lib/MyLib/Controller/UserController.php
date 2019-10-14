@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\Book\Controller;
+namespace lib\MyLib\Controller;
 
 class UserController extends AbstractController
 {}

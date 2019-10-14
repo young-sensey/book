@@ -1,0 +1,12 @@
+<table class="book-table">
+    <tr>
+        <th class="text">text</th>
+        <th class="user">user name</th>
+    </tr>
+    <?php foreach ($list as $item): ?>
+        <tr>
+            <td><?php echo $item['text']; ?></td>
+            <td><?php echo $item['author']; ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

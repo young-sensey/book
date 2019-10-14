@@ -1,8 +1,8 @@
 <?php
 
-namespace lib\Book\Controller;
+namespace lib\MyLib\Controller;
 
-use lib\Book\Request;
+use lib\MyLib\Request;
 
 //абстрактный контроллер
 class AbstractController
@@ -20,6 +20,7 @@ class AbstractController
     public function indexAction() {
         var_dump('indexAction');
     }
+
     public function viewAction() {
         var_dump('viewAction');
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\Book;
+namespace lib\MyLib;
 
 //front-контроллер, находит и выполняет нужный контроллер
 class FrontController
@@ -9,7 +9,7 @@ class FrontController
     public function dispatch($request, $response) {
         $controller = $request->getParam('controller');
 
-        $class = "\\lib\\Book\\Controller\\" . $controller . "Controller";
+        $class = "\\lib\\MyLib\\Controller\\" . $controller . "Controller";
         $object = new $class();
         $object->dispatch();
     }
