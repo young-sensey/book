@@ -1,0 +1,25 @@
+.create-post {
+    margin-bottom: 25px;
+}
+
+.post-head .post-create-time {
+    font-size: 0.8em;
+    display: inline-block;
+    color: #6c757d;
+}
+
+.post-head .post-author {
+    display: inline-block;
+}
+
+.post-head form {
+    display: inline-block;
+}
+
+.create-post textarea {
+    width: 100%;
+}
+
+.create-post .form-edit {
+    display: none;
+}

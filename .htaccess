@@ -1,7 +1,0 @@
-RewriteEngine On
-#RewriteCond %{REQUEST_URI} !^\/resources/styles/(.*).css
-#RewriteCond %{REQUEST_URI} !^\/resources/images/(.*).png
-#RewriteCond %{REQUEST_URI} !^\/resources/images/(.*).jpg
-#RewriteCond %{REQUEST_URI} !^\/resources/lib/jquery/(.*).js
-
-RewriteRule ^(.*)$ index.php?%{REQUEST_URI} [QSA,L]
